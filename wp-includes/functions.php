@@ -531,7 +531,7 @@ function wp_extract_urls( $content ) {
 			. "(?:"
 				. "\([\w\d]+\)|"
 				. "(?:"
-					. "[^`!()\[\]{};:'\".,<>«»“”‘’\s]|"
+					. "[^`!()\[\]{};:'\".,<>芦禄鈥溾�濃�樷�橽s]|"
 					. "(?:[:]\d+)?/?"
 				. ")+"
 			. ")"
@@ -3636,7 +3636,6 @@ function dead_db() {
 	nocache_headers();
 	header( 'Content-Type: text/html; charset=utf-8' );
 ?>
-<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"<?php if ( is_rtl() ) echo ' dir="rtl"'; ?>>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

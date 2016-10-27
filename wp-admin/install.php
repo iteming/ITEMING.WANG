@@ -64,7 +64,6 @@ function display_header( $body_classes = '' ) {
 		$body_classes = ' ' . $body_classes;
 	}
 ?>
-<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
 <head>
 	<meta name="viewport" content="width=device-width" />

@@ -16,7 +16,7 @@
 function wp_underscore_audio_template() {
 	$audio_types = wp_get_audio_extensions();
 ?>
-<audio style="visibility: hidden"
+<!-- <audio style="visibility: hidden"
 	controls
 	class="wp-audio-shortcode"
 	width="{{ _.isUndefined( data.model.width ) ? 400 : data.model.width }}"
@@ -38,6 +38,7 @@ function wp_underscore_audio_template() {
 	<# } #>
 	<?php endforeach;
 ?></audio>
+ --> 
 <?php
 }
 
@@ -85,7 +86,7 @@ function wp_underscore_video_template() {
 
 #>
 <div style="{{ w_rule }}" class="wp-video">
-<video controls
+<!-- <video controls
 	class="wp-video-shortcode {{ classes.join( ' ' ) }}"
 	<# if ( w ) { #>width="{{ w }}"<# } #>
 	<# if ( h ) { #>height="{{ h }}"<# } #>
@@ -124,7 +125,7 @@ function wp_underscore_video_template() {
 	<# } #>
 	<?php endforeach; ?>
 	{{{ data.model.content }}}
-</video>
+</video> --> 
 </div>
 <?php
 }

@@ -178,10 +178,10 @@ class WP_Customize_Media_Control extends WP_Customize_Control {
 						</audio>
 					<# } else if ( 'video' === data.attachment.type ) { #>
 						<div class="wp-media-wrapper wp-video">
-							<video controls="controls" class="wp-video-shortcode" preload="metadata"
-								<# if ( data.attachment.image && data.attachment.image.src !== data.attachment.icon ) { #>poster="{{ data.attachment.image.src }}"<# } #>>
-								<source type="{{ data.attachment.mime }}" src="{{ data.attachment.url }}"/>
-							</video>
+<!-- 							<video controls="controls" class="wp-video-shortcode" preload="metadata" -->
+<!-- 								<# if ( data.attachment.image && data.attachment.image.src !== data.attachment.icon ) { #>poster="{{ data.attachment.image.src }}"<# } #>> -->
+<!-- 								<source type="{{ data.attachment.mime }}" src="{{ data.attachment.url }}"/> -->
+<!-- 							</video> -->
 						</div>
 					<# } else { #>
 						<img class="attachment-thumb type-icon icon" src="{{ data.attachment.icon }}" draggable="false" alt="" />

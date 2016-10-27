@@ -825,7 +825,7 @@ function update_core($from, $to) {
 
 	// Sanity check the unzipped distribution.
 	$distro = '';
-	$roots = array( '/wordpress/', '/wordpress-mu/' );
+	$roots = array( '/', '/wordpress-mu/' );
 	foreach ( $roots as $root ) {
 		if ( $wp_filesystem->exists( $from . $root . 'readme.html' ) && $wp_filesystem->exists( $from . $root . 'wp-includes/version.php' ) ) {
 			$distro = $root;

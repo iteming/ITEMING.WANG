@@ -935,7 +935,7 @@ class Akismet {
 	 */
 	public static function http_post( $request, $path, $ip=null ) {
 
-		$akismet_ua = sprintf( 'WordPress/%s | Akismet/%s', $GLOBALS['wp_version'], constant( 'AKISMET_VERSION' ) );
+		$akismet_ua = sprintf( '%s | Akismet/%s', $GLOBALS['wp_version'], constant( 'AKISMET_VERSION' ) );
 		$akismet_ua = apply_filters( 'akismet_ua', $akismet_ua );
 
 		$content_length = strlen( $request );
