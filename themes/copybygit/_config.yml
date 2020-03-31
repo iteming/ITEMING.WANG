@@ -1,0 +1,45 @@
+permalink: /blog/:year/:month/:title.html
+include: ['.htaccess']
+exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "CNAME", "Gemfile", "Gemfile.lock"]
+markdown: kramdown
+highlights: pygments
+url:
+cdn_url: cdn.chik.cn
+lsi: false
+safe: true
+timezone: Asia/Shanghai
+auto: false
+
+paginate: 8
+paginate_path: "page:num"
+
+kramdown:
+  auto_ids: true,
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  use_coderay: false
+
+JB :
+  IMAGE_PATH : http://coolshell.info/images
+
+# presonal config
+domain: http://chik.cn
+title: iteming-贾昭凯
+description: Talk is cheap show me the code
+author: jiazk
+email: iteming@126.com
+github: iteming
+
+config:
+  js_dir:
+  img_dir:
+  css_dir:
+
+
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type: 'git'
+  repository: 'git@github.com:iteming/iteming.github.io.git'
+  branch: 'master'
