@@ -257,52 +257,52 @@ widgets:
         # Feedburner ID
         feedburner_id: removeifFeedsId
     # Google AdSense unit configurations
-#    -
-#        # Where should the widget be placed, left sidebar or right sidebar
-#        position: left
-#        type: adsense
-#        # AdSense client ID
-#        client_id: ''
-#        # AdSense AD unit ID
-#        slot_id: ''
-# Plugin configurations
-plugins:
-    # Enable page startup animations
-    animejs: true
-    # Show the "back to top" button
-    back_to_top: true
-    # Baidu Analytics plugin settings
-    # https://tongji.baidu.com
-    baidu_analytics:
-        # Baidu Analytics tracking ID
-        tracking_id:
-    # BuSuanZi site/page view counter
-    # https://busuanzi.ibruce.info
-    busuanzi: true
-    # Enable the lightGallery and Justified Gallery plugins
-    # https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/gallery-plugin/
-    gallery: true
-    # Google Analytics plugin settings
-    # https://analytics.google.com
-    google_analytics:
-        # Google Analytics tracking ID
-        tracking_id:
-    # Hotjar user feedback plugin
-    # https://www.hotjar.com/
-    hotjar:
-        # Hotjar site id
-        site_id:
-    # Enable the KaTeX math typesetting supprot
-    # https://katex.org/
-    katex: false
-    # Enable the MathJax math typesetting support
-    # https://www.mathjax.org/
-    mathjax: false
-    # Enable the Outdated Browser plugin
-    # http://outdatedbrowser.com/
-    outdated_browser: false
-    # Show a progress bar at top of the page on page loading
-    progressbar: true
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: left
+        type: adsense
+        # AdSense client ID
+        client_id: ''
+        # AdSense AD unit ID
+        slot_id: ''
+    # Plugin configurations
+    plugins:
+        # Enable page startup animations
+        animejs: true
+        # Show the "back to top" button
+        back_to_top: true
+        # Baidu Analytics plugin settings
+        # https://tongji.baidu.com
+        baidu_analytics:
+            # Baidu Analytics tracking ID
+            tracking_id:
+        # BuSuanZi site/page view counter
+        # https://busuanzi.ibruce.info
+        busuanzi: true
+        # Enable the lightGallery and Justified Gallery plugins
+        # https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/gallery-plugin/
+        gallery: true
+        # Google Analytics plugin settings
+        # https://analytics.google.com
+        google_analytics:
+            # Google Analytics tracking ID
+            tracking_id:
+        # Hotjar user feedback plugin
+        # https://www.hotjar.com/
+        hotjar:
+            # Hotjar site id
+            site_id:
+        # Enable the KaTeX math typesetting supprot
+        # https://katex.org/
+        katex: false
+        # Enable the MathJax math typesetting support
+        # https://www.mathjax.org/
+        mathjax: false
+        # Enable the Outdated Browser plugin
+        # http://outdatedbrowser.com/
+        outdated_browser: false
+        # Show a progress bar at top of the page on page loading
+        progressbar: true
 # CDN provider settings
 # https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/speed-up-your-site-with-custom-cdn/
 providers:
