@@ -337,7 +337,7 @@ has_latest_modify_time: true #是否显示最后修改时间 true开启，false-
 
 has_copyright: true # 文中是否显示copyright true开启，false-关闭
 
-website_start_time: 2018/11/11 00:00:00 #网站运行开始时间,不填不显示
+website_start_time: 2020/04/01 00:00:00 #网站运行开始时间,不填不显示
 
 footer_registered_no: 陕ICP备14009430号-2-3 #备案号
 
