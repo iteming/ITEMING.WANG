@@ -319,17 +319,26 @@ providers:
 
 # Comment plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/
-comment:
-    type: changyan
+#comment:
 #    type: gitalk
-#    Disqus shortname
-#    shortname: ''
-    owner: iteming         # (required) GitHub user name
-    repo: blog_comment          # (required) GitHub repository name
+##    Disqus shortname
+##    shortname: ''
+#    owner: iteming         # (required) GitHub user name
+#    repo: blog_comment          # (required) GitHub repository name
 #    client_id: 1dbd2abdbf0677115f20     # (required) OAuth application client id
 #    client_secret: 2c97f761b0703d09cdfeeb3180da53f3517122f5 # (required) OAuth application client secret
-    client_id: cyuLBn34q     # (required) OAuth application client id
-    client_secret: prod_9f05c3258ae61bca188b5672b10955ef # (required) OAuth application client secret
+#    admin: ['iteming']
+#    create_issue_manually: true
+#    distraction_free_mode: false
+#    has_hot_recommend: true # 是否有热门推荐
+#    has_latest_comment: true #是否有最新评论
+
+comment:
+    type: changyan
+    owner: iteming         # (required) GitHub user name
+    repo: blog_comment     # (required) GitHub repository name
+    app_id: cyuLBn34q     # (required) OAuth application client id
+    conf: prod_9f05c3258ae61bca188b5672b10955ef # (required) OAuth application client secret
     admin: ['iteming']
     create_issue_manually: true
     distraction_free_mode: false
