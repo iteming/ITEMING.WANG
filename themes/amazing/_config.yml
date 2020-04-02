@@ -258,11 +258,12 @@ widgets:
         feedburner_id: removeifFeedsId
     # Google AdSense unit configurations
     -
+        # 放到header中 <script data-ad-client="ca-pub-9592657326212296" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         # Where should the widget be placed, left sidebar or right sidebar
         position: left
         type: adsense
         # AdSense client ID
-        client_id: ''
+        client_id: 'ca-pub-9592657326212296'
         # AdSense AD unit ID
         slot_id: ''
     # Plugin configurations
