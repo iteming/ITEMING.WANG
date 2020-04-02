@@ -13,17 +13,17 @@ module.exports = class extends Component {
         const { my_cdn, url_for } = helper;
         const { comment, use_pjax } = config;
         // 默认不加载公式，文中头部开启mathJax:true才加载
-        var isMath = page.mathJax != undefined && page.mathJax;
+        const isMath = page.mathJax != undefined && page.mathJax;
 
         // =====index hot_recommend
-        var hotRecommendStr =
-            "<div class=\"card widget\">" +
-            "   <div class=\"card-content\">" +
-            "       <h3 class=\"menu-label\">热门推荐</h3><span id=\"index_hot_div\">加载中，稍等几秒...</span>" +
-            "   </div>" +
-            "</div>";
+        let hotRecommendStr
+            = '<div class="card widget">'
+            + '   <div class="card-content">'
+            + '       <h3 class="menu-label">热门推荐</h3><span id="index_hot_div">加载中，稍等几秒...</span>'
+            + '   </div>'
+            + '</div>';
 
-        var pjaxJs = `var pjax = new Pjax({
+        const pjaxJs = `var pjax = new Pjax({
             elements: "a",//代表点击链接就更新
             selectors: [  //代表要更新的节点
                 ".section",

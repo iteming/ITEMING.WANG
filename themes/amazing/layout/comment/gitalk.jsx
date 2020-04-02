@@ -20,7 +20,7 @@ class Gitalk extends Component {
             enableHotKey,
             jsUrl,
             cssUrl,
-            isLocked,
+            isLocked
         } = this.props;
 
         if (!id || !repo || !owner || !admin || !clientId || !clientSecret) {
@@ -61,9 +61,9 @@ module.exports = cacheComponent(Gitalk, 'comment.gitalk', props => {
     const { my_cdn, url_for } = helper;
 
     // FIXME: config name change
-    const id = crypto.createHash('md5').update(helper.get_path_end_str(props.page.path,props.page.uniqueId,props.page.title)).digest('hex');
+    const id = crypto.createHash('md5').update(helper.get_path_end_str(props.page.path, props.page.uniqueId, props.page.title)).digest('hex');
 
-    let canComments = props.page.comments;
+    const canComments = props.page.comments;
     return {
         id,
         repo: comment.repo,
@@ -80,6 +80,6 @@ module.exports = cacheComponent(Gitalk, 'comment.gitalk', props => {
         enableHotKey: comment.enable_hotkey,
         cssUrl: helper.cdn('gitalk', '1.6.0', 'dist/gitalk.css'),
         jsUrl: my_cdn(url_for('/js/gitalk.min.js')),
-        isLocked: !canComments,
+        isLocked: !canComments
     };
 });

@@ -6,8 +6,8 @@ module.exports = class extends Component {
 
         const categoryTags = [];
 
-        if(categories.length > 0){
-            categoryTags.push(<i class="fas fa-folder-open has-text-grey">&nbsp;</i>)
+        if (categories.length > 0) {
+            categoryTags.push(<i class="fas fa-folder-open has-text-grey">&nbsp;</i>);
         }
         categories.forEach((category, i) => {
             categoryTags.push(<a class="link-muted" href={category.url}>{category.name}</a>);

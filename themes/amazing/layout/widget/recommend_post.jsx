@@ -5,29 +5,29 @@ class RecommendPosts extends Component {
     render() {
         const { recommendPost, relatePost, recommend_title, related_title } = this.props;
 
-        var i = 0, j = 0;
+        let i = 0; let j = 0;
         return <div>
-            {relatePost.length > 0 ?
-                <div class="recommend-post">
+            {relatePost.length > 0
+                ? <div class="recommend-post">
                     <span class="is-size-6 has-text-grey has-mr-7">#&nbsp;{related_title}</span>
                     <br />
                     {relatePost.map(post => {
                         j++;
-                        return <span>&nbsp;&nbsp;{j}.<a href={post.url} class="is-size-6" target="_blank">{post.title}</a><br /></span>
+                        return <span>&nbsp;&nbsp;{j}.<a href={post.url} class="is-size-6" target="_blank">{post.title}</a><br /></span>;
                     })}
                 </div>
                 : null}
-            {recommendPost.length > 0 ?
-                <div class="recommend-post">
+            {recommendPost.length > 0
+                ? <div class="recommend-post">
                     <span class="is-size-6 has-text-grey has-mr-7">#&nbsp;{recommend_title}</span>
                     <br />
                     {recommendPost.map(post => {
                         i++;
-                        return <span>&nbsp;&nbsp;{i}.<a href={post.url} class="is-size-6" target="_blank">{post.title}</a><br /></span>
+                        return <span>&nbsp;&nbsp;{i}.<a href={post.url} class="is-size-6" target="_blank">{post.title}</a><br /></span>;
                     })}
                 </div>
                 : null}
-        </div>
+        </div>;
     }
 }
 
@@ -37,18 +37,18 @@ module.exports = cacheComponent(RecommendPosts, 'widget.recommendposts', props =
     if (!site.posts.length) {
         return null;
     }
-    var relatePost = [];
-    var recommendPost = [];
+    let relatePost = [];
+    let recommendPost = [];
 
     function isRelatePost(curCategories, postCategories) {
-        var cur = "";
-        var post = "";
+        let cur = '';
+        let post = '';
         curCategories.map(cat => {
             cur += cat.name;
-        })
+        });
         postCategories.map(cat => {
             post += cat.name;
-        })
+        });
         return cur == post;
     }
 

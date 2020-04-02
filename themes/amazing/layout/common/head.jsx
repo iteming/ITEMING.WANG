@@ -98,7 +98,7 @@ module.exports = class extends Component {
             structuredImages = page.photos;
         }
 
-        var hasLive2D = has_live_2D_switch == undefined || has_live_2D_switch;
+        const hasLive2D = has_live_2D_switch == undefined || has_live_2D_switch;
         return <head>
             <meta charset="utf-8" />
             {meta_generator ? <meta name="generator" content={`Hexo ${env.version}`} /> : null}

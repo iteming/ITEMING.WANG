@@ -85,7 +85,7 @@ class Toc extends Component {
         if ('id' in toc && 'index' in toc && 'text' in toc) {
             result = <li>
                 <a class="is-flex" id={`toc-item-${toc.id}`} href={'#' + toc.id}>
-                    {/*<span class="mr-2">{toc.index}</span>*/}
+                    {/* <span class="mr-2">{toc.index}</span>*/}
                     <span>{toc.text}</span>
                 </a>
                 {result}
@@ -96,7 +96,7 @@ class Toc extends Component {
 
     render() {
         const toc = getToc(this.props.content);
-        //toc highlight
+        // toc highlight
         const js = `
         $(document).ready(function () { //参考自 https://github.com/ppoffice/hexo-theme-icarus/pull/616/files
             var observerTopMargin;

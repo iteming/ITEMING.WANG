@@ -43,7 +43,7 @@ class Footer extends Component {
                             {showVisitorCounter ? <div class="size-small"><span id="busuanzi_container_site_uv">
                                 ❤️感谢<strong>&nbsp;<span id="busuanzi_value_site_uv">99+</span>&nbsp;</strong>
                             </span>小伙伴的
-                                <strong>&nbsp;<span id="busuanzi_value_site_pv">99+</span>&nbsp;</strong>次光临，查看💐<a href="https://github.com/removeif/hexo-theme-amazing" target="_blank">主题源码</a>！❤️</div> : null}
+                            <strong>&nbsp;<span id="busuanzi_value_site_pv">99+</span>&nbsp;</strong>次光临，查看💐<a href="https://github.com/removeif/hexo-theme-amazing" target="_blank">主题源码</a>！❤️</div> : null}
                         </p>
                     </div>
                     <div class="level-end">
@@ -58,8 +58,8 @@ class Footer extends Component {
                             })}
                         </div> : null}
                     </div>
-                    {side_music_netease_id ?
-                        <div class="sideMusic">
+                    {side_music_netease_id
+                        ? <div class="sideMusic">
                             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" />
                             <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
                             <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>

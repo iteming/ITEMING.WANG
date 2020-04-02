@@ -23,7 +23,7 @@ function formatAllWidgets(widgets) {
     if (Array.isArray(widgets)) {
         widgets.filter(widget => typeof widget === 'object').forEach(widget => {
             if ('position' in widget && (widget.position === 'left' || widget.position === 'right')) {
-                if(widget.position === 'right'){
+                if (widget.position === 'right') {
                     widget.position = 'left';
                 }
                 if (!(widget.position in result)) {
@@ -79,7 +79,7 @@ class Widgets extends Component {
     render() {
         const { site, config, helper, page, position } = this.props;
         // 左右槽
-        const widgets = (page.layout == 'post' || page.layout == 'page') ? formatAllWidgets(config.widgets)[position] || [] : formatWidgets(config.widgets)[position] || [];
+        const widgets = page.layout == 'post' || page.layout == 'page' ? formatAllWidgets(config.widgets)[position] || [] : formatWidgets(config.widgets)[position] || [];
         const columnCount = getColumnCount(config.widgets);
 
         if (!widgets.length) {
@@ -108,7 +108,7 @@ class Widgets extends Component {
                 return null;
             })}
 
-            {/*此处放开可以在非桌面设备上并且非文章情况下展示right widget,否则不展示*/}
+            {/* 此处放开可以在非桌面设备上并且非文章情况下展示right widget,否则不展示*/}
             {position === 'left' && hasColumn(config.widgets, 'right') ? <div class={classname({
                 'column-right-shadow': true,
                 'is-hidden-widescreen': true,
