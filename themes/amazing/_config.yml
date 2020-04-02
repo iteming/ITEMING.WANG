@@ -1,7 +1,8 @@
 # Version of the configuration file
 version: 3.0.0
 # Path or URL to the website's logo
-logo: https://cdn.jsdelivr.net/gh/iteming/blog_image/img/2019/20191121122803.png #https://cdn.jsdelivr.net/gh/iteming/blog_image/img/2019/20191121115040.png
+logo: https://cdn.jsdelivr.net/gh/iteming/iteming.github.io@latest/img/logo.png
+#https://cdn.jsdelivr.net/gh/iteming/blog_image/img/2019/20191121115040.png
 # Page metadata configurations
 head:
     # URL or path to the website's icon
@@ -22,7 +23,7 @@ head:
         url: https://iteming.github.io/
         # Page cover (og:image) (optional) Default to the Open Graph image or thumbnail of the page
         # You should leave this blank for most of the time
-        image: https://cdn.jsdelivr.net/gh/iteming/iteming.github.io@latest/img/avatar.jpg
+        image: https://cdn.jsdelivr.net/gh/iteming/iteming.github.io@latest/img/tuzi.jpg
         # Site name (og:site_name) (optional)
         # You should leave this blank for most of the time
         site_name: 易兲鸣
@@ -61,7 +62,7 @@ head:
         author: iteming
         # Page images (optional) Default to the Open Graph image or thumbnail of the page
         # You should leave this blank for most of the time
-        image: https://cdn.jsdelivr.net/gh/iteming/iteming.github.io@latest/img/avatar.jpg
+        image: https://cdn.jsdelivr.net/gh/iteming/iteming.github.io@latest/img/tuzi.jpg
     # Additional HTML meta tags in an array
     meta:
         # Meta tag specified in <attribute>=<value> style
@@ -182,13 +183,13 @@ widgets:
         position: left
         type: profile
         # Author name
-        author: 贾昭凯
+        author: 易兲鸣
         # Title of the author to be shown in the profile widget
         author_title: 屌丝性格有许多硬伤。他们缺乏行动力，敢想却不敢做；他们虚荣又故作清高；害羞却又自作多情；他们自卑自贱却又自以为是；他们是善良的，但对别人的成功缺乏正确的认识，对别人的批评和意见也没有冷静而正确的理解。渴望成功，却没有勇气克服困难，更多时候，他们选择了沉默
         # Author's current location to be shown in the profile widget
         location: 来自邯郸 现居西安
-        # Path or URL to the avatar to be shown in the profile widget
-        avatar: https://cdn.jsdelivr.net/gh/iteming/iteming.github.io@latest/img/avatar.jpg
+        # Path or URL to the tuzi to be shown in the profile widget
+        avatar: https://cdn.jsdelivr.net/gh/iteming/iteming.github.io@latest/img/tuzi.jpg
         # Whether show the rounded avatar image
         avatar_rounded: true
         # Email address for the Gravatar
