@@ -1,0 +1,340 @@
+---
+title: 12.强悍的在线重定义：致分区表空间，已存在数据的情况。很实用。
+toc: true
+recommend: 1
+keywords: categories-java
+uniqueId: '2020-04-09 07:56:31/"12.oracle分区表空间".html'
+mathJax: false
+date: 2020-04-09 15:56:31
+thumbnail:
+tags:
+categories:
+---
+
+ --修改表空间
+
+    alter database datafile 'd:\oracle\product\10.2.0\oradata\test1\test6k.dbf' autoextend on next 50m maxsize 200m;
+--修改临时表空间
+
+    alter database tempfile 'd:\oracle\product\10.2.0\oradata\test1\test.dbf' resize 10m;
+
+
+2.3 . 使用在线重定义：DBMS_REDEFINITION
+
+
+
+       在线重定义能保证数据的一致性，在大部分时间内，表都可以正常进行DML操作。只在切换的瞬间锁表，具有很高的可用性。这种方法具有很强的灵活性，对各种不同的需要都能满足。而且，可以在切换前进行相应的授权并建立各种约束，可以做到切换完成后不再需要任何额外的管理操作。
+
+
+
+关于DBMS_REDEFINITION的介绍，参考官方连接：
+
+      http://download.oracle.com/docs/cd/B19306_01/appdev.102/b14258/d_redefi.htm#CBBFDJBC
+
+
+
+关于用在线重定义创建分区表，参考：
+
+       How To Partition Existing Table Using DBMS_Redefinition [ID 472449.1]
+
+       http://blog.csdn.net/tianlesoftware/archive/2011/03/02/6218693.aspx
+
+
+
+这个功能只在9.2.0.4以后的版本才有，在线重定义表具有以下功能：
+
+       （1）修改表的存储参数；
+
+       （2）将表转移到其他表空间；
+
+       （3）增加并行查询选项；
+
+       （4）增加或删除分区；
+
+       （5）重建表以减少碎片；
+
+       （6）将堆表改为索引组织表或相反的操作；
+
+       （7）增加或删除一个列。
+
+
+
+使用在线重定义的一些限制条件：
+
+    （1） There must be enough space to hold two copies of the table.
+
+    （2） Primary key columns cannot be modified.
+
+    （3） Tables must have primary keys.
+
+    （4） Redefinition must be done within the same schema.
+
+    （5） New columns added cannot be made NOT NULL until after the redefinition operation.
+
+    （6） Tables cannot contain LONGs, BFILEs or User Defined Types.
+
+    （7） Clustered tables cannot be redefined.
+
+    （8） Tables in the SYS or SYSTEM schema cannot be redefined.
+
+    （9） Tables with materialized view logs or materialized views defined on them cannot be redefined.
+
+    （10） Horizontal sub setting of data cannot be performed during the redefinition.
+
+
+
+在Oracle 10.2.0.4和11.1.0.7 版本下，在线重定义可能会遇到如下bug：
+
+       Bug 7007594 - ORA-600 [12261]
+
+       http://blog.csdn.net/tianlesoftware/archive/2011/03/02/6218681.aspx
+
+
+
+在线重定义的大致操作流程如下：
+
+       （1）创建基础表A，如果存在，就不需要操作。
+
+       （2）创建临时的分区表B。
+
+       （3）开始重定义，将基表A的数据导入临时分区表B。
+
+       （4）结束重定义，此时在DB的 Name Directory里，已经将2个表进行了交换。即此时基表A成了分区表，我们创建的临时分区表B成了普通表。 此时我们可以删除我们创建的临时表B。它已经是普通表。
+
+
+
+
+
+下面看一个示例：
+
+
+
+1. 创建基本表和索引
+
+sql> conn icd/icd;
+
+已连接。
+
+sql> create table unpar_table (
+
+  2  id number(10) primary key,
+
+  3  create_date date
+
+  4  );
+
+表已创建。
+
+sql> insert into unpar_table select rownum, created from dba_objects;
+
+已创建72288行。
+
+sql> create index create_date_ind on unpar_table(create_date);
+
+索引已创建。
+
+sql> commit;
+
+提交完成。
+
+
+
+2. 收集表的统计信息
+
+sql> exec dbms_stats.gather_table_stats('icd', 'unpar_table', cascade => true);
+
+pl/sql 过程已成功完成。
+
+
+
+3. 创建临时分区表
+
+sql> create table  par_table (id number primary key, time date) partition by range (time)
+
+  2  (partition p1 values less than (to_date('2004-7-1', 'yyyy-mm-dd')),
+
+  3  partition p2 values less than (to_date('2005-1-1', 'yyyy-mm-dd')),
+
+  4  partition p3 values less than (to_date('2005-7-1', 'yyyy-mm-dd')),
+
+  5  partition p4 values less than (maxvalue));
+
+表已创建。
+
+
+
+4. 进行重定义操作
+
+
+
+4.1 检查重定义的合理性
+
+sql> exec dbms_redefinition.can_redef_table('icd', 'unpar_table');
+
+pl/sql 过程已成功完成。
+
+
+
+4.2 如果4.1 没有问题，开始重定义，这个过程可能要等一会。
+
+
+
+这里要注意：如果分区表和原表列名相同，可以用如下方式进行：
+
+SQL> BEGIN
+
+DBMS_REDEFINITION.start_redef_table(
+
+uname => 'ICD',
+
+orig_table => 'unpar_table',
+
+int_table => 'par_table');
+
+END;
+
+/
+
+       如果分区表的列名和原表不一致，那么在开始重定义的时候，需要重新指定映射关系：
+
+SQL> EXEC DBMS_REDEFINITION.START_REDEF_TABLE(
+
+'ICD',
+
+'unpar_table',
+
+'par_table',
+
+'ID ID, create_date TIME', -- 在这里指定新的映射关系
+
+DBMS_REDEFINITION.CONS_USE_PK);
+
+
+
+这一步操作结束后，数据就已经同步到这个临时的分区表里来了。
+
+
+
+4.3 同步新表，这是可选的操作
+
+SQL> BEGIN
+
+  2  dbms_redefinition.sync_interim_table(
+
+  3  uname => 'ICD',
+
+  4  orig_table => 'unpar_table',
+
+  5  int_table => 'par_table');
+
+  6  END;
+
+  7  /
+
+PL/SQL 过程已成功完成。
+
+
+
+4.4 创建索引，在线重定义只重定义数据，索引还需要单独建立。
+
+sql> create index create_date_ind2 on par_table(time);
+
+索引已创建。
+
+
+
+4.5 收集新表的统计信息
+
+sql> exec dbms_stats.gather_table_stats('icd', 'par_table', cascade => true);
+
+pl/sql 过程已成功完成。
+
+
+
+4.6 结束重定义
+
+SQL> BEGIN
+
+  2  dbms_redefinition.finish_redef_table(
+
+  3  uname => 'ICD',
+
+  4  orig_table => 'unpar_table',
+
+  5  int_table => 'par_table');
+
+  6  END;
+
+  7  /
+
+PL/SQL 过程已成功完成。
+
+
+
+结束重定义的意义：
+
+       基表unpar_table 和临时分区表par_table 进行了交换。 此时临时分区表par_table成了普通表，我们的基表unpar_table成了分区表。
+
+
+
+       我们在重定义的时候，基表unpar_table是可以进行DML操作的。 只有在2个表进行切换的时候会有短暂的锁表。
+
+
+
+5. 删除临时表
+
+SQL> DROP TABLE par_table;
+
+表已删除。
+
+
+
+6. 索引重命名
+
+SQL> ALTER INDEX create_date_ind2 RENAME TO create_date_ind;
+
+索引已更改。
+
+
+
+7. 验证
+
+sql> select partitioned from user_tables where table_name = 'UNPAR_TABLE';
+
+par
+
+---
+
+yes
+
+sql> select partition_name from user_tab_partitions where table_name = 'UNPAR_TABLE';
+
+partition_name
+
+------------------------------
+
+p1
+
+p2
+
+p3
+
+p4
+
+sql> select count(*) from unpar_table;
+
+  count(*)
+
+----------
+
+     72288
+
+sql> select count(*) from unpar_table partition (p4);
+
+  count(*)
+
+----------
+
+     72288
+
+sql>
