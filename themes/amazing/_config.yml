@@ -266,7 +266,7 @@ widgets:
         # AdSense client ID
         client_id: 'ca-pub-9592657326212296'
         # AdSense AD unit ID
-        slot_id: ''
+        slot_id: '2646079259'
     # Plugin configurations
 plugins:
     # Enable page startup animations
